@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DocSearch - Document Search Application</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --primary-50: #f0fdf4;
+      --primary-100: #dcfce7;
+      --primary-200: #bbf7d0;
+      --primary-300: #86efac;
+      --primary-400: #4ade80;
+      --primary-500: #22c55e;
+      --primary-600: #16a34a;
+      --primary-700: #15803d;
+      --primary-800: #166534;
+      --primary-900: #14532d;
+    }
+    .bg-primary-50 { background-color: var(--primary-50); }
+    .bg-primary-100 { background-color: var(--primary-100); }
+    .bg-primary-500 { background-color: var(--primary-500); }
+    .bg-primary-600 { background-color: var(--primary-600); }
+    .hover\:bg-primary-700:hover { background-color: var(--primary-700); }
+    .text-primary-500 { color: var(--primary-500); }
+    .text-primary-600 { color: var(--primary-600); }
+    .text-primary-700 { color: var(--primary-700); }
+    .hover\:text-primary-700:hover { color: var(--primary-700); }
+    .border-primary-500 { border-color: var(--primary-500); }
+    .border-primary-600 { border-color: var(--primary-600); }
+    .focus\:ring-primary-500:focus { --tw-ring-color: var(--primary-500); }
+    
+    .btn-primary {
+      background-color: var(--primary-600);
+      color: white;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: background-color 0.2s;
+    }
+    .btn-primary:hover {
+      background-color: var(--primary-700);
+    }
+    
+    .btn-secondary {
+      background-color: white;
+      color: var(--primary-600);
+      border: 1px solid var(--primary-600);
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: background-color 0.2s;
+    }
+    .btn-secondary:hover {
+      background-color: #f9fafb;
+    }
+    
+    .input-field {
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+      padding: 0.5rem 0.75rem;
+    }
+    .input-field:focus {
+      outline: none;
+      --tw-ring-color: var(--primary-500);
+      --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+      --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+      box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+      border-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <a href="#" class="flex items-center">
+              <svg class="h-8 w-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <span class="ml-2 text-xl font-bold text-gray-900">DocSearch</span>
+            </a>
+          </div>
+          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <a href="#home" class="inline-flex items-center px-1 pt-1 border-b-2 border-primary-500 text-sm font-medium text-gray-900">
+              Home
+            </a>
+            <a href="#upload" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+              Upload
+            </a>
+            <a href="#search" class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+              Search
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="py-12">
+    <div class="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-primary-50">
+      <div class="max-w-4xl w-full space-y-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            <span class="block">Document Search</span>
+            <span class="block text-primary-600">Find what you need, instantly</span>
+          </h1>
+          <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+            Upload, search, and manage your documents with ease. Supports PDF, DOCX, PPTX, and XLSX formats.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+          <a href="#upload" class="btn-primary text-center">
+            Upload Documents
+          </a>
+          <a href="#search" class="btn-secondary text-center">
+            Search Documents
+          </a>
+        </div>
+
+        <div class="mt-12 bg-white rounded-xl shadow-md overflow-hidden md:max-w-4xl mx-auto">
+          <div class="md:flex">
+            <div class="p-8">
+              <div class="uppercase tracking-wide text-sm text-primary-600 font-semibold">Features</div>
+              <div class="mt-4">
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <svg class="h-6 w-6 text-primary-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Upload multiple document formats (PDF, DOCX, PPTX, XLSX)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="h-6 w-6 text-primary-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Full-text search within document content</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="h-6 w-6 text-primary-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Search by metadata (title, author, date)</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="h-6 w-6 text-primary-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>Secure document storage and management</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upload Section -->
+  <section id="upload" class="py-12 bg-white">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-3xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-gray-900">Upload Documents</h1>
+          <a href="#home" class="text-primary-600 hover:text-primary-700">
+            Back to Home
+          </a>
+        </div>
+
+        <div class="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors border-gray-300 hover:border-primary-400">
+          <div class="space-y-2">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <p class="text-lg text-gray-600">
+              Drag & drop files here, or click to select files
+            </p>
+            <p class="text-sm text-gray-500">
+              Supported formats: PDF, DOCX, PPTX, XLSX
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-3">Selected Files</h2>
+          <ul class="divide-y divide-gray-200 border border-gray-200 rounded-md">
+            <li class="flex items-center justify-between py-3 px-4">
+              <div class="flex items-center">
+                <svg class="h-6 w-6 text-red-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <div>
+                  <p class="text-sm font-medium text-gray-900">sample-document.pdf</p>
+                  <p class="text-xs text-gray-500">2.5 MB</p>
+                </div>
+              </div>
+              <button class="text-red-500 hover:text-red-700">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </li>
+            <li class="flex items-center justify-between py-3 px-4">
+              <div class="flex items-center">
+                <svg class="h-6 w-6 text-blue-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <div>
+                  <p class="text-sm font-medium text-gray-900">report.docx</p>
+                  <p class="text-xs text-gray-500">1.2 MB</p>
+                </div>
+              </div>
+              <button class="text-red-500 hover:text-red-700">
+                <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <div class="mt-6 flex justify-end">
+          <button class="btn-primary">
+            Upload Files
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Section -->
+  <section id="search" class="py-12 bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">Search Documents</h1>
+        <a href="#home" class="text-primary-600 hover:text-primary-700">
+          Back to Home
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Filters sidebar -->
+        <div class="md:col-span-1 bg-white p-4 rounded-lg shadow-sm">
+          <h2 class="font-medium text-lg mb-4">Filters</h2>
+          
+          <div class="mb-4">
+            <h3 class="font-medium text-sm text-gray-700 mb-2">Document Type</h3>
+            <div class="space-y-2">
+              <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                <span class="ml-2 text-sm text-gray-700 capitalize">pdf</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                <span class="ml-2 text-sm text-gray-700 capitalize">docx</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                <span class="ml-2 text-sm text-gray-700 capitalize">pptx</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                <span class="ml-2 text-sm text-gray-700 capitalize">xlsx</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="mb-4">
+            <h3 class="font-medium text-sm text-gray-700 mb-2">Upload Date</h3>
+            <div class="space-y-2">
+              <div>
+                <label class="block text-xs text-gray-500 mb-1">From</label>
+                <input type="date" class="input-field w-full text-sm">
+              </div>
+              <div>
+                <label class="block text-xs text-gray-500 mb-1">To</label>
+                <input type="date" class="input-field w-full text-sm">
+              </div>
+            </div>
+          </div>
+          
+          <button class="w-full btn-secondary text-sm">
+            Apply Filters
+          </button>
+        </div>
+
+        <!-- Search and results -->
+        <div class="md:col-span-3">
+          <form class="mb-6">
+            <div class="flex">
+              <input type="text" placeholder="Search documents..." class="input-field flex-grow">
+              <button type="submit" class="btn-primary ml-2">
+                Search
+              </button>
+            </div>
+          </form>
+
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+              <div class="flex">
+                <div class="mr-4 flex-shrink-0">
+                  <svg class="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="text-lg font-medium text-gray-900">Annual Report 2024</h3>
+                  <p class="text-sm text-gray-500">
+                    annual-report-2024.pdf • 3.5 MB • Uploaded Apr 15, 2025
+                  </p>
+                  <p class="mt-2 text-sm text-gray-700">
+                    ...The company's <mark>revenue</mark> increased by 15% compared to the previous year, reaching $10.2 million...
+                  </p>
+                  <div class="mt-2 flex space-x-2">
+                    <a href="#document-1" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                      View
+                    </a>
+                    <a href="#" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+              <div class="flex">
+                <div class="mr-4 flex-shrink-0">
+                  <svg class="h-8 w-8 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div class="flex-grow">
+                  <h3 class="text-lg font-medium text-gray-900">Marketing Strategy</h3>
+                  <p class="text-sm text-gray-500">
+                    marketing-strategy.docx • 1.8 MB • Uploaded Apr 10, 2025
+                  </p>
+                  <p class="mt-2 text-sm text-gray-700">
+                    ...Our target <mark>revenue</mark> for Q3 is $5.5 million, which represents a 20% increase over Q2...
+                  </p>
+                  <div class="mt-2 flex space-x-2">
+                    <a href="#document-2" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                      View
+                    </a>
+                    <a href="#" class="text-primary-600 hover:text-primary-700 text-sm font-medium">
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Document View Section -->
+  <section id="document-1" class="py-12 bg-white">
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-gray-900">Document Details</h1>
+          <a href="#search" class="text-primary-600 hover:text-primary-700">
+            Back to Search
+          </a>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-start">
+              <div class="mr-6">
+                <svg class="h-12 w-12 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <div class="flex-grow">
+                <h2 class="text-xl font-bold text-gray-900">Annual Report 2024</h2>
+                <p class="text-sm text-gray-500 mt-1">
+                  annual-report-2024.pdf • 3.5 MB
+                </p>
+                <p class="text-sm text-gray-700 mt-1">
+                  <span class="font-medium">Author:</span> Finance Department
+                </p>
+                <p class="text-sm text-gray-700 mt-1">
+                  <span class="font-medium">Uploaded:</span> April 15, 2025, 10:30 AM
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <div class="flex space-x-4">
+                <a href="#" class="btn-primary">
+                  Download Document
+                </a>
+                <a href="#search" class="btn-secondary">
+                  Back to Search
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-gray-200">
+              <h3 class="text-lg font-medium text-gray-900 mb-4">Document Content</h3>
+              <div class="bg-gray-50 p-4 rounded-md text-sm text-gray-800 whitespace-pre-wrap max-h-96 overflow-y-auto">
+                Annual Report 2024
+                
+                Executive Summary
+                
+                The company's revenue increased by 15% compared to the previous year, reaching $10.2 million. This growth was primarily driven by the expansion into new markets and the launch of our premium product line. Operating expenses were kept under control, resulting in a 22% increase in net profit.
+                
+                Key Financial Highlights:
+                - Revenue: $10.2 million (+15%)
+                - Gross Profit: $6.8 million (+18%)
+                - Operating Expenses: $4.1 million (+8%)
+                - Net Profit: $2.7 million (+22%)
+                - Earnings Per Share: $1.35 (+20%)
+                
+                Market Analysis
+                
+                Our market share increased from 12% to 15% in our primary markets. The industry as a whole grew by 8%, indicating that our growth outpaced the market average. Competitor analysis shows that we are now the second-largest player in our segment, up from third position last year.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-gray-200 mt-12">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <div class="md:flex md:items-center md:justify-between">
+        <div class="flex justify-center md:justify-start">
+          <a href="#" class="flex items-center">
+            <svg class="h-6 w-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span class="ml-2 text-lg font-semibold text-gray-900">DocSearch</span>
+          </a>
+        </div>
+        <div class="mt-8 md:mt-0">
+          <p class="text-center text-sm text-gray-500 md:text-right">
+            &copy; 2025 DocSearch. All rights reserved.
+          </p>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between">
+        <div class="flex justify-center space-x-6 md:justify-start">
+          <a href="#home" class="text-sm text-gray-500 hover:text-gray-900">
+            Home
+          </a>
+          <a href="#upload" class="text-sm text-gray-500 hover:text-gray-900">
+            Upload
+          </a>
+          <a href="#search" class="text-sm text-gray-500 hover:text-gray-900">
+            Search
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

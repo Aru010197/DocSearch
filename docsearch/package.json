@@ -1,0 +1,39 @@
+{
+  "name": "docsearch",
+  "version": "1.0.0",
+  "description": "Document search application with Next.js and Supabase",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [
+    "document",
+    "search",
+    "next.js",
+    "supabase"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
+    "@types/node": "^20.11.25",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "autoprefixer": "^10.4.18",
+    "exceljs": "^4.4.0",
+    "mammoth": "^1.6.0",
+    "next": "^14.1.3",
+    "pdf-parse": "^1.1.1",
+    "postcss": "^8.4.35",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.51.0",
+    "swr": "^2.2.5",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.2"
+  }
+}
