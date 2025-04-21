@@ -135,6 +135,6 @@ The database schema includes tables and policies for user authentication and doc
 2. Update the frontend to include sign-in/sign-up functionality
 3. Modify API routes to use the authenticated user ID
 
-## License
 
-[MIT](LICENSE)
+
+
